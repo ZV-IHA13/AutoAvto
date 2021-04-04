@@ -29,14 +29,14 @@
 
     <EditText
         android:id="@+id/LogInLog"
-        android:layout_width="251dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
+        android:layout_width="254dp"
+        android:layout_height="46dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/LogInHint"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.458"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StartViewLogin" />
 
