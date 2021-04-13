@@ -17,7 +17,7 @@ public class CreateCarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_car);
-        
+
         Spinner dropdown = findViewById(R.id.cars);
         String[] item = new String[]{"1", "2"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, item);
