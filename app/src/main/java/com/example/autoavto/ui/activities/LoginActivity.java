@@ -1,4 +1,4 @@
-package com.example.autoavto;
+package com.example.autoavto.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import com.example.autoavto.MainActivity;
+import com.example.autoavto.R;
 
 public class LoginActivity extends AppCompatActivity {
 

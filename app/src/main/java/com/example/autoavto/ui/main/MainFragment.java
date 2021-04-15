@@ -2,7 +2,6 @@ package com.example.autoavto.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.security.keystore.SecureKeyImportUnavailableException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.autoavto.R;
-import com.example.autoavto.ui.CreateCarActivity;
+import com.example.autoavto.ui.activities.CreateCarActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainFragment extends Fragment {

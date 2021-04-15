@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/nav_notes"
-        android:name="com.example.autoavto.ui.gallery.GalleryFragment"
+        android:name="com.example.autoavto.ui.notepad.NotepadFragment"
         android:label="@string/menu_notes"
         tools:layout="@layout/fragment_notes" />
 
     <fragment
         android:id="@+id/nav_settings"
-        android:name="com.example.autoavto.ui.slideshow.SlideshowFragment"
+        android:name="com.example.autoavto.ui.settings.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
 
