@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoAvto">
-        <activity android:name=".CreateNotePadActivity"></activity>
+        <activity android:name=".ui.activities.CreateNotePadActivity"></activity>
         <activity android:name=".ui.activities.CreateCarActivity" />
         <activity
             android:name=".MainActivity"

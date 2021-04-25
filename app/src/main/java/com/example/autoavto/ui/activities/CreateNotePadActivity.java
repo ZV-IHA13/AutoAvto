@@ -1,8 +1,10 @@
-package com.example.autoavto;
+package com.example.autoavto.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.autoavto.R;
 
 public class CreateNotePadActivity extends AppCompatActivity {
 

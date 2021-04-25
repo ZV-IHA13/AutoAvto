@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateNotePadActivity">
+    tools:context=".ui.activities.CreateNotePadActivity">
 
     <MultiAutoCompleteTextView
         android:id="@+id/multiAutoCompleteTextView"
