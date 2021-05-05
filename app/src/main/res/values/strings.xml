@@ -29,4 +29,7 @@
     <string name="choose_TO_6">ТО - 6 (меньше 105 т. км)</string>
     <string name="choose_TO_7">ТО - 7 (меньше 120 т. км)</string>
 
+    <string name="new_note">Создание заметки</string>
+    <string name="name_note_hint">Имя заметки</string>
+    <string name="text_note_hint">Содержимое</string>
 </resources>

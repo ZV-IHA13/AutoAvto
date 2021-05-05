@@ -45,11 +45,5 @@ public class CreateNotePadActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
     }
-
-
 }
