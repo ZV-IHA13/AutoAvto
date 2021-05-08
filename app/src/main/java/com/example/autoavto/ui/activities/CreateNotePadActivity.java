@@ -44,15 +44,14 @@ public class CreateNotePadActivity extends AppCompatActivity {
                     File file = new File(fileName);
                     //create the file.
                     if (file.createNewFile()){
-                        Toast.makeText(this, "Сохранено!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Сохранено!", Toast.LENGTH_SHORT).show();FileWriter writer = new FileWriter (fileName);
+                        writer.write(noteText.getText().toString());
+                        writer.close();
+                        finish();
                     }
                     else{
                         Toast.makeText(this, "Заметка с таким именем уже существует!", Toast.LENGTH_SHORT).show();
                     }
-                    FileWriter writer = new FileWriter (fileName);
-                    writer.write(noteText.getText().toString());
-                    writer.close();
-                    finish();
                 }
             }
             catch (FileNotFoundException e) {

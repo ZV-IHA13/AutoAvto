@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,7 +30,7 @@ public class NotepadFragment extends Fragment {
     ListView NotesList;
     View root;
     ArrayAdapter<String> a;
-    ArrayList<String> names = new ArrayList<>();
+    ArrayList<String> names;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,14 +38,12 @@ public class NotepadFragment extends Fragment {
         fab = root.findViewById(R.id.fabCreateNote);
         NotesList = root.findViewById(R.id.NotesList);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getContext(), CreateNotePadActivity.class);
-                startActivity(i);
-            }
+        fab.setOnClickListener(view -> {
+            Intent i = new Intent(getContext(), CreateNotePadActivity.class);
+            startActivity(i);
         });
         update();
+
         return root;
     }
     @Override
@@ -54,11 +53,26 @@ public class NotepadFragment extends Fragment {
     }
 
     public void update() {
+        names = search_notes();
+        String[] def = new String[]{"Здесь еще нет заметок!"};
         a = new ArrayAdapter<>(root.getContext(), android.R.layout.simple_list_item_1, names);
-        if (names == null) {
-
+        ArrayAdapter<String> b = new ArrayAdapter<>(root.getContext(),android.R.layout.simple_list_item_1,def);
+        if (names.isEmpty()) {
+            NotesList.setAdapter(b);
         } else {
             NotesList.setAdapter(a);
         }
     }
+    public ArrayList<String> search_notes(){
+        ArrayList<String> names = new ArrayList<>();
+        File path = new File("data/data/com.example.autoavto/files");
+        String[] files = path.list();
+        for(int i = 0;i< files.length;i++){
+            if(files[i].contains(".txt")){
+                names.add(files[i].replace(".txt",""));
+            }
+        }
+        return names;
+    }
+
 }
