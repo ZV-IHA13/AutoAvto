@@ -12,11 +12,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.autoavto.Name;
 import com.example.autoavto.ui.activities.CreateNotePadActivity;
 import com.example.autoavto.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class NotepadFragment extends Fragment {
@@ -44,14 +49,11 @@ public class NotepadFragment extends Fragment {
     }
     @Override
     public void onResume() {
-        Toast.makeText(root.getContext(), "Обновление", Toast.LENGTH_SHORT).show();
         update();
         super.onResume();
     }
 
     public void update() {
-        Name n = new Name();
-        names = n.getArray();
         a = new ArrayAdapter<>(root.getContext(), android.R.layout.simple_list_item_1, names);
         if (names == null) {
 
