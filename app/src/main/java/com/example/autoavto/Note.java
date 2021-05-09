@@ -4,5 +4,4 @@ public class Note {
 
     String firstText;
     String text;
-
 }

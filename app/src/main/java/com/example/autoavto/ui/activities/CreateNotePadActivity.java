@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.autoavto.R;
@@ -25,6 +27,7 @@ public class CreateNotePadActivity extends AppCompatActivity {
     EditText noteName;
     EditText noteText;
     List<File> lst;
+    ImageButton buttonBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,7 @@ public class CreateNotePadActivity extends AppCompatActivity {
         noteName = findViewById(R.id.noteName);
         buttonCreate = findViewById(R.id.buttonCreate);
         noteText = findViewById(R.id.noteText);
+        buttonBack = findViewById(R.id.buttonBack);
 
         buttonCreate.setOnClickListener(v -> {
             try  {
@@ -58,6 +62,15 @@ public class CreateNotePadActivity extends AppCompatActivity {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        });
+
+
+        // СОЗДАНА КНОПОЧКА ДЛЯ ПЕРЕХОДА НАЗАД БЕЗ СОЗДАНИЯ ЗАМЕТКИ ИЗ АКТИВНОСТИ СОЗДАНИЯ ЗАМЕТОК
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

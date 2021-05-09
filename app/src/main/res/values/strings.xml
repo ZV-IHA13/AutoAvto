@@ -32,4 +32,6 @@
     <string name="new_note">Создание заметки</string>
     <string name="name_note_hint">Имя заметки</string>
     <string name="text_note_hint">Содержимое</string>
+
+    <string name="back">Назад</string>
 </resources>

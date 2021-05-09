@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -44,6 +45,15 @@ public class NotepadFragment extends Fragment {
         });
         update();
 
+
+        //ТЕПЕРЬ ЗДЕСЬ ЗАДАЕМ ДЕЙСТВИЯ, КОТОРЫЕ БУДУТ ВЫПОЛНЕНЫ ПОСЛЕ НАЖАТИЯ НА ЭЛЕМЕНТ ЛИСТВЬЮ
+        NotesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getContext(), (position + 1) + " элемент", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return root;
     }
     @Override
@@ -67,12 +77,14 @@ public class NotepadFragment extends Fragment {
         ArrayList<String> names = new ArrayList<>();
         File path = new File("data/data/com.example.autoavto/files");
         String[] files = path.list();
-        for(int i = 0;i< files.length;i++){
+        for(int i = 0;i < files.length; i++){
             if(files[i].contains(".txt")){
-                names.add(files[i].replace(".txt",""));
+                names.add(0, files[i].replace(".txt","")); // ИЗМЕНЕНО: ТЕПЕРЬ ЭЛЕМЕНТ ДОБАВЛЯЕТСЯ В САМОЕ НАЧАЛО СПИСКА
             }
         }
         return names;
     }
+
+
 
 }
