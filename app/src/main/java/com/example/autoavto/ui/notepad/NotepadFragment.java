@@ -50,7 +50,12 @@ public class NotepadFragment extends Fragment {
         NotesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), (position + 1) + " элемент", Toast.LENGTH_SHORT).show();
+                String a = NotesList.getAdapter().getItem(position).toString();
+                Toast.makeText(getContext(), a, Toast.LENGTH_SHORT).show();
+
+                Intent i = new Intent(getContext(), CreateNotePadActivity.class);
+                i.putExtra("name", a);
+                startActivity(i);
             }
         });
 
@@ -66,7 +71,7 @@ public class NotepadFragment extends Fragment {
         names = search_notes();
         String[] def = new String[]{"Здесь еще нет заметок!"};
         a = new ArrayAdapter<>(root.getContext(), android.R.layout.simple_list_item_1, names);
-        ArrayAdapter<String> b = new ArrayAdapter<>(root.getContext(),android.R.layout.simple_list_item_1,def);
+        ArrayAdapter<String> b = new ArrayAdapter<>(root.getContext(), android.R.layout.simple_list_item_1, def);
         if (names.isEmpty()) {
             NotesList.setAdapter(b);
         } else {

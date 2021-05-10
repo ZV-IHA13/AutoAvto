@@ -10,14 +10,14 @@
         android:id="@+id/noteName"
         android:layout_width="360dp"
         android:layout_height="46dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="@string/name_note_hint"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newnoteview" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonBack_promCheck" />
 
     <Button
         android:id="@+id/buttonCreate"
@@ -29,19 +29,6 @@
         app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/noteText" />
-
-    <TextView
-        android:id="@+id/newnoteview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/new_note"
-        android:textColor="#2196F3"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.156"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/noteText"
@@ -58,13 +45,13 @@
         app:layout_constraintTop_toBottomOf="@+id/noteName" />
 
     <ImageButton
-        android:id="@+id/buttonBack"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
+        android:id="@+id/buttonBack_promCheck"
+        android:layout_width="59dp"
+        android:layout_height="58dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="328dp"
+        android:layout_marginRight="328dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.621"
-        app:layout_constraintStart_toEndOf="@+id/newnoteview"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_revert" />
 
