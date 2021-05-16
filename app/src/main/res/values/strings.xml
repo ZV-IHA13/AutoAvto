@@ -20,14 +20,14 @@
     <string name="create_car_choose_1">Выберите машину</string>
     <string name="create_car_choose_2">Выберите последнее пройденное ТО</string>
 
-    <string name="choose_TO_0">ТО - 0 (меньше 15 т. км)</string>
-    <string name="choose_TO_1">ТО - 1 (меньше 30 т. км)</string>
-    <string name="choose_TO_2">ТО - 2 (меньше 45 т. км)</string>
-    <string name="choose_TO_3">ТО - 3 (меньше 60 т. км)</string>
-    <string name="choose_TO_4">ТО - 4 (меньше 75 т. км)</string>
-    <string name="choose_TO_5">ТО - 5 (меньше 90 т. км)</string>
-    <string name="choose_TO_6">ТО - 6 (меньше 105 т. км)</string>
-    <string name="choose_TO_7">ТО - 7 (меньше 120 т. км)</string>
+    <string name="choose_TO_0">ТО - 0 (еще не пройден)</string>
+    <string name="choose_TO_1">ТО - 1</string>
+    <string name="choose_TO_2">ТО - 2</string>
+    <string name="choose_TO_3">ТО - 3</string>
+    <string name="choose_TO_4">ТО - 4</string>
+    <string name="choose_TO_5">ТО - 5</string>
+    <string name="choose_TO_6">ТО - 6</string>
+    <string name="choose_TO_7">ТО - 7</string>
 
     <string name="new_note">Создание заметки</string>
     <string name="name_note_hint">Имя заметки</string>

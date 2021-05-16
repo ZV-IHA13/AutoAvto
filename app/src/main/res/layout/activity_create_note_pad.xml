@@ -51,8 +51,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="328dp"
         android:layout_marginRight="328dp"
+        android:background="@drawable/ic_back"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
