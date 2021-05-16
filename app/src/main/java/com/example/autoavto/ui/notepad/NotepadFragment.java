@@ -1,5 +1,6 @@
 package com.example.autoavto.ui.notepad;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,24 +15,23 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.autoavto.Note;
 import com.example.autoavto.ui.activities.CreateNotePadActivity;
 import com.example.autoavto.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class NotepadFragment extends Fragment {
     FloatingActionButton fab;
     ListView NotesList;
     View root;
-    ArrayAdapter<String> a;
-    ArrayList<String> names;
+
+
+    private static final List<Note> notes = new ArrayList<Note>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -50,11 +50,11 @@ public class NotepadFragment extends Fragment {
         NotesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String a = NotesList.getAdapter().getItem(position).toString();
-                Toast.makeText(getContext(), a, Toast.LENGTH_SHORT).show();
-
+                Note a = notes.get(position);
+                String fileName = a.firstText;
                 Intent i = new Intent(getContext(), CreateNotePadActivity.class);
-                i.putExtra("name", a);
+
+                i.putExtra("name", fileName);
                 startActivity(i);
             }
         });
@@ -68,28 +68,55 @@ public class NotepadFragment extends Fragment {
     }
 
     public void update() {
-        names = search_notes();
-        String[] def = new String[]{"Здесь еще нет заметок!"};
-        a = new ArrayAdapter<>(root.getContext(), android.R.layout.simple_list_item_1, names);
-        ArrayAdapter<String> b = new ArrayAdapter<>(root.getContext(), android.R.layout.simple_list_item_1, def);
-        if (names.isEmpty()) {
-            NotesList.setAdapter(b);
-        } else {
-            NotesList.setAdapter(a);
-        }
+        search_notes();
+        ArrayAdapter<Note> a = new NoteAdapter(root.getContext());
+        NotesList.setAdapter(a);
+
     }
-    public ArrayList<String> search_notes(){
-        ArrayList<String> names = new ArrayList<>();
+    public void search_notes(){
         File path = new File("data/data/com.example.autoavto/files");
         String[] files = path.list();
-        for(int i = 0;i < files.length; i++){
-            if(files[i].contains(".txt")){
-                names.add(0, files[i].replace(".txt","")); // ИЗМЕНЕНО: ТЕПЕРЬ ЭЛЕМЕНТ ДОБАВЛЯЕТСЯ В САМОЕ НАЧАЛО СПИСКА
+
+        for (int i = 0; i < files.length; i++) {
+            System.out.println(files[i]);
+        }
+
+        for (int i = 0; i < files.length; i++) {
+            System.out.println(files[i]);
+            File file = new File(path + "/" + files[i]);
+            Date date = new Date(file.lastModified());
+            Note note = new Note(files[i].replace(".txt", ""), date.toString());
+            if (notes.contains(note)) {
+                return;
+            } else {
+                notes.add(note);
             }
         }
-        return names;
     }
 
+    public class NoteAdapter extends ArrayAdapter<Note> {
+
+
+
+        public NoteAdapter(Context context) {
+            super(context, R.layout.my_simple_list_item, notes);
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            Note note = getItem(position);
+
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext())
+                        .inflate(R.layout.my_simple_list_item, null);
+            }
+            ((TextView) convertView.findViewById(R.id.name))
+                    .setText(note.firstText);
+            ((TextView) convertView.findViewById(R.id.capital))
+                    .setText(note.date);
+            return convertView;
+        }
+    }
 
 
 }

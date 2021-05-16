@@ -1,6 +1,6 @@
 package com.example.autoavto.ui.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
+
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.autoavto.R;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,12 +19,13 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+
+
 public class CreateNotePadActivity extends AppCompatActivity {
     String fileName;
     Button buttonCreate;
     EditText noteName;
     EditText noteText;
-    List<File> lst;
     ImageButton buttonBack;
     int b = 1;
     @Override
