@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.example.autoavto.Note;
 import com.example.autoavto.ui.activities.CreateNotePadActivity;
 import com.example.autoavto.R;
+import com.example.autoavto.ui.activities.RedactionActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
@@ -52,7 +53,7 @@ public class NotepadFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Note a = notes.get(position);
                 String fileName = a.firstText;
-                Intent i = new Intent(getContext(), CreateNotePadActivity.class);
+                Intent i = new Intent(getContext(), RedactionActivity.class);
 
                 i.putExtra("name", fileName);
                 startActivity(i);

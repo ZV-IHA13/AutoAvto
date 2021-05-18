@@ -33,6 +33,7 @@
     <string name="name_note_hint">Имя заметки</string>
     <string name="text_note_hint">Содержимое</string>
     <string name="text_note_check">Просмотр заметки</string>
+    <string name="text_note_delete">Удалить</string>
 
     <string name="back">Назад</string>
 </resources>

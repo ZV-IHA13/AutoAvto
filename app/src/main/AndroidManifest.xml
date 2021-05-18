@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.autoavto">
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -8,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoAvto">
-
-        <activity android:name=".ui.activities.CreateNotePadActivity"></activity>
+        <activity android:name=".ui.activities.RedactionActivity"></activity>
+        <activity android:name=".ui.activities.CreateNotePadActivity" />
         <activity android:name=".ui.activities.CreateCarActivity" />
         <activity
             android:name=".MainActivity"
