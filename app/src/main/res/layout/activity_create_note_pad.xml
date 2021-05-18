@@ -10,12 +10,14 @@
         android:id="@+id/noteName"
         android:layout_width="360dp"
         android:layout_height="46dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/name_note_hint"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonBack_promCheck" />
 
@@ -26,7 +28,7 @@
         android:layout_marginTop="4dp"
         android:text="@android:string/ok"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintHorizontal_bias="0.392"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/noteText" />
 
@@ -34,13 +36,13 @@
         android:id="@+id/noteText"
         android:layout_width="360dp"
         android:layout_height="510dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/text_note_hint"
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintHorizontal_bias="0.392"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/noteName" />
 
@@ -48,11 +50,11 @@
         android:id="@+id/buttonBack_promCheck"
         android:layout_width="59dp"
         android:layout_height="58dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="328dp"
-        android:layout_marginRight="328dp"
         android:background="@drawable/ic_back"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

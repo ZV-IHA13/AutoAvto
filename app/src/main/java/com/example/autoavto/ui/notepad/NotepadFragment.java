@@ -63,6 +63,7 @@ public class NotepadFragment extends Fragment {
     }
     @Override
     public void onResume() {
+        Toast.makeText(root.getContext(), "Обновление", Toast.LENGTH_SHORT).show();
         update();
         super.onResume();
     }
@@ -74,15 +75,12 @@ public class NotepadFragment extends Fragment {
 
     }
     public void search_notes(){
+        notes.clear();
         File path = new File("data/data/com.example.autoavto/files");
         String[] files = path.list();
 
         for (int i = 0; i < files.length; i++) {
-            System.out.println(files[i]);
-        }
 
-        for (int i = 0; i < files.length; i++) {
-            System.out.println(files[i]);
             File file = new File(path + "/" + files[i]);
             Date date = new Date(file.lastModified());
             Note note = new Note(files[i].replace(".txt", ""), date.toString());
