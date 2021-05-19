@@ -64,7 +64,6 @@ public class NotepadFragment extends Fragment {
     }
     @Override
     public void onResume() {
-        Toast.makeText(root.getContext(), "Обновление", Toast.LENGTH_SHORT).show();
         update();
         super.onResume();
     }

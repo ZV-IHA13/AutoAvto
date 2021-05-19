@@ -34,8 +34,7 @@ public class CreateNotePadActivity extends AppCompatActivity {
     Button buttonCreate;
     EditText noteName;
     EditText noteText;
-    ImageButton buttonBack;
-    int b = 1;
+    Button buttonBack;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -46,45 +45,7 @@ public class CreateNotePadActivity extends AppCompatActivity {
         noteName = findViewById(R.id.noteName);
         buttonCreate = findViewById(R.id.buttonCreate);
         noteText = findViewById(R.id.noteText);
-        buttonBack = findViewById(R.id.buttonBack_promCheck);
-
-
-        if (getIntent().getSerializableExtra("name") != null) {
-            String namefile = getIntent().getSerializableExtra("name").toString();
-            noteName.setText(namefile);
-            File file = new File(getFilesDir() + "/" + getIntent().getSerializableExtra("name").toString() + ".txt");
-            try {
-                FileReader reader = new FileReader(file);
-                Scanner scanner = new Scanner(reader);
-                String text = "";
-                while (scanner.hasNextLine()) {
-                    text = text + scanner.nextLine() + "\n";
-                }
-                noteText.setText(text);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            buttonCreate.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (noteName.getText().toString().equals("")) {
-                        Toast.makeText(CreateNotePadActivity.this, "Имя не может содержать пробелов или быть пустым!", Toast.LENGTH_SHORT).show();
-                    } else {
-                        File file = new File(getFilesDir() + "/" + namefile + ".txt");
-                        if (file.exists()) {
-                            writeinfile(file.getPath());
-                            Toast.makeText(CreateNotePadActivity.this, "Сохранено!", Toast.LENGTH_SHORT).show();
-                            finish();
-                        } else {
-                            Toast.makeText(CreateNotePadActivity.this, "Заметка с таким именем уже существует!", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-            });
-
-        }else {
+        buttonBack = findViewById(R.id.buttonBack_fromCreate);
             buttonCreate.setOnClickListener(v -> {
 
                 try {
@@ -96,9 +57,7 @@ public class CreateNotePadActivity extends AppCompatActivity {
                         //create the file.
                         if (filecreate.createNewFile()) {
                             Toast.makeText(this, "Сохранено!", Toast.LENGTH_SHORT).show();
-                            FileWriter writer = new FileWriter(fileName);
-                            writer.write(noteText.getText().toString());
-                            writer.close();
+                            writeinfile(fileName);
                             finish();
                         } else {
                             Toast.makeText(this, "Заметка с таким именем уже существует!", Toast.LENGTH_SHORT).show();
@@ -117,8 +76,6 @@ public class CreateNotePadActivity extends AppCompatActivity {
                     finish();
                 }
             });
-
-        }
 
         }
         public void writeinfile (String fileName) {

@@ -3,10 +3,8 @@ package com.example.autoavto.ui.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.autoavto.R;
@@ -19,83 +17,63 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class RedactionActivity extends AppCompatActivity {
-    Button buttonCreate;
+    Button buttonRedo;
     EditText noteName;
     EditText noteText;
-    ImageButton buttonBack;
-    String fileName;
+    Button buttonBack;
     Button buttonNoteDelete;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_redaction);
 
-
         noteName = findViewById(R.id.noteNameRedact);
-        buttonCreate = findViewById(R.id.buttonCreateFrRedact);
+        buttonRedo = findViewById(R.id.buttonCreateFrRedact);
         noteText = findViewById(R.id.noteTextRedact);
-        buttonBack = findViewById(R.id.buttonBack_promRedact);
-        buttonNoteDelete = findViewById(R.id.buttonNoteDelete);
+        buttonBack = findViewById(R.id.buttonBack_fromRedo);
+        buttonNoteDelete = findViewById(R.id.buttonDeleteFile);
 
-        buttonNoteDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                File file = new File(getFilesDir() + "/" + getIntent().getSerializableExtra("name").toString() + ".txt");
-                if (file.delete()) {
-                    Toast.makeText(RedactionActivity.this, "Заметка удалена", Toast.LENGTH_SHORT).show();
-                    finish();
-                }
-            }
-        });
-
-
-
-        buttonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        buttonNoteDelete.setOnClickListener(v -> {
+            File file = new File(getFilesDir() + "/" + getIntent().getSerializableExtra("name").toString() + ".txt");
+            if (file.delete()) {
+                Toast.makeText(RedactionActivity.this, "Заметка удалена", Toast.LENGTH_SHORT).show();
                 finish();
             }
-        });
+        });//удаление файла
 
-
-        if (getIntent().getSerializableExtra("name") != null) {
+        buttonBack.setOnClickListener(v -> finish());//возвращение в активность
+            //открытие файла и вывод его содержимого
             String namefile = getIntent().getSerializableExtra("name").toString();
             noteName.setText(namefile);
             File file = new File(getFilesDir() + "/" + getIntent().getSerializableExtra("name").toString() + ".txt");
             try {
                 FileReader reader = new FileReader(file);
                 Scanner scanner = new Scanner(reader);
-                String text = "";
+                StringBuilder text = new StringBuilder();
                 while (scanner.hasNextLine()) {
-                    text = text + scanner.nextLine() + "\n";
+                    text.append(scanner.nextLine()).append("\n");
                 }
-                noteText.setText(text);
+                noteText.setText(text.toString());
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-            buttonCreate.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (noteName.getText().toString().equals("")) {
-                        Toast.makeText(RedactionActivity.this, "Имя не может содержать пробелов или быть пустым!", Toast.LENGTH_SHORT).show();
+        //
+            buttonRedo.setOnClickListener(v -> {
+                if (noteName.getText().toString().equals("")) {
+                    Toast.makeText(RedactionActivity.this, "Имя не может содержать пробелов или быть пустым!", Toast.LENGTH_SHORT).show();
+                } else {
+                    File file1 = new File(getFilesDir() + "/" + namefile + ".txt");
+                    if (file1.exists()) {
+                        writeinfile(file1.getPath());
+                        Toast.makeText(RedactionActivity.this, "Сохранено!", Toast.LENGTH_SHORT).show();
+                        finish();
                     } else {
-                        File file = new File(getFilesDir() + "/" + namefile + ".txt");
-                        if (file.exists()) {
-                            writeinfile(file.getPath());
-                            Toast.makeText(RedactionActivity.this, "Сохранено!", Toast.LENGTH_SHORT).show();
-                            finish();
-                        } else {
-                            Toast.makeText(RedactionActivity.this, "Заметка с таким именем уже существует!", Toast.LENGTH_SHORT).show();
-                        }
+                        Toast.makeText(RedactionActivity.this, "Заметка с таким именем уже существует!", Toast.LENGTH_SHORT).show();
                     }
                 }
-            });
+            });//редактирование файла
 
         }
-
-    }
 
     public void writeinfile (String fileName) {
         try {

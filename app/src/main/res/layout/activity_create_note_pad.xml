@@ -12,19 +12,19 @@
         android:layout_height="46dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/name_note_hint"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.032"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonBack_promCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
         android:id="@+id/buttonCreate"
         android:layout_width="360dp"
-        android:layout_height="63dp"
+        android:layout_height="60dp"
         android:layout_marginTop="4dp"
         android:text="@android:string/ok"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
     <EditText
         android:id="@+id/noteText"
         android:layout_width="360dp"
-        android:layout_height="510dp"
+        android:layout_height="460dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:gravity="start|top"
@@ -46,8 +46,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/noteName" />
 
-    <ImageButton
-        android:id="@+id/buttonBack_promCheck"
+    <Button
+        android:id="@+id/buttonBack_fromCreate"
         android:layout_width="59dp"
         android:layout_height="58dp"
         android:layout_marginStart="20dp"
@@ -55,6 +55,19 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/new_note"
+        android:textColor="#2196F3"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.293"
+        app:layout_constraintStart_toEndOf="@+id/buttonBack_fromCreate"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
