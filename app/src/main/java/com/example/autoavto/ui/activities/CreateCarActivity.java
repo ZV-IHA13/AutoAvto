@@ -12,6 +12,16 @@ import android.widget.Toast;
 
 import com.example.autoavto.R;
 
+
+
+import java.sql.Connection;
+
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class CreateCarActivity extends AppCompatActivity {
     RadioButton radioButton1,radioButton2,radioButton3,radioButton4,radioButton5,radioButton6,radioButton7,radioButton8;
     Button button_accept;
@@ -37,6 +47,41 @@ public class CreateCarActivity extends AppCompatActivity {
                     return;
                 }
                 /* Здесь будет загрузка с базы сервера */
+                /*try {
+                    //Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+                } catch (ClassNotFoundException e) {
+                    System.out.println("Where is your MySQL JDBC Driver?");
+                    e.printStackTrace();
+                    return;
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace(); }
+                */
+                try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    //Driver driver = new com.mysql.cj.jdbc.Driver();
+                    //DriverManager.registerDriver(driver);
+
+
+                    Connection conn = DriverManager.getConnection("jdbc:mysql://VH276.spaceweb.ru:3306/frinru_takeby", "frinru_takeby", "TakeBy#frin21");
+
+                    Statement statement = conn.createStatement();
+                    ResultSet res = statement.executeQuery("SELECT * FROM TEST");
+                    while (res.next()) {
+                        System.out.println(res.getString("NAME"));
+
+                    }
+
+
+                } catch (SQLException ex) {
+                    System.out.println("SQLException: " + ex.getMessage());
+                    System.out.println("SQLState: " + ex.getSQLState());
+                    System.out.println("VendorError: " + ex.getErrorCode());
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
                 finish();
             }
         });
@@ -54,4 +99,6 @@ public class CreateCarActivity extends AppCompatActivity {
         radioButton8 = findViewById(R.id.radioButton8);
 
     }
+
+
 }

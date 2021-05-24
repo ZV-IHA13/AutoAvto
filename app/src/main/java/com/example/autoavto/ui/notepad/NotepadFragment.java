@@ -87,7 +87,7 @@ public class NotepadFragment extends Fragment {
             if (notes.contains(note)) {
                 return;
             } else {
-                notes.add(note);
+                notes.add(0, note);
             }
         }
     }
