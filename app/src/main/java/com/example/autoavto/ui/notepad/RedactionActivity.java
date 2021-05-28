@@ -1,14 +1,13 @@
-package com.example.autoavto.ui.activities;
+package com.example.autoavto.ui.notepad;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import com.example.autoavto.MyDialogFragment;
 import com.example.autoavto.R;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -32,14 +31,14 @@ public class RedactionActivity extends AppCompatActivity {
         noteText = findViewById(R.id.noteTextRedact);
         buttonBack = findViewById(R.id.buttonBack_fromRedo);
         buttonNoteDelete = findViewById(R.id.buttonDeleteFile);
-
         buttonNoteDelete.setOnClickListener(v -> {
-            File file = new File(getFilesDir() + "/" + getIntent().getSerializableExtra("name").toString() + ".txt");
-            if (file.delete()) {
-                Toast.makeText(RedactionActivity.this, "Заметка удалена", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        });//удаление файла
+            FragmentManager manager = getSupportFragmentManager();
+            Bundle args = new Bundle();
+            args.putString("name", getFilesDir() + "/" + getIntent().getSerializableExtra("name").toString()+ ".txt");
+            MyDialogFragment myDialogFragment = new MyDialogFragment();
+            myDialogFragment.setArguments(args);
+            myDialogFragment.show(manager, "myDialog");
+        });
 
         buttonBack.setOnClickListener(v -> finish());//возвращение в активность
             //открытие файла и вывод его содержимого

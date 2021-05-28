@@ -37,6 +37,7 @@ public class CreateCarActivity extends AppCompatActivity {
                     return;
                 }
                 /* Здесь будет загрузка с базы сервера */
+
                 finish();
             }
         });
@@ -52,6 +53,5 @@ public class CreateCarActivity extends AppCompatActivity {
         radioButton6 = findViewById(R.id.radioButton6);
         radioButton7 = findViewById(R.id.radioButton7);
         radioButton8 = findViewById(R.id.radioButton8);
-
     }
 }

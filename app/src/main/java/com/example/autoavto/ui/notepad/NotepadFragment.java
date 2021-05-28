@@ -15,9 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.autoavto.Note;
-import com.example.autoavto.ui.activities.CreateNotePadActivity;
 import com.example.autoavto.R;
-import com.example.autoavto.ui.activities.RedactionActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;

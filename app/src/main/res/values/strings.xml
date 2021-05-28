@@ -33,6 +33,10 @@
     <string name="name_note_hint">Имя заметки</string>
     <string name="text_note_hint">Содержимое</string>
     <string name="text_note_check">Просмотр</string>
-
     <string name="back">Назад</string>
+
+    <string name="dialog_button_accept">Да</string>
+    <string name="dialog_button_disaccept">Отмена</string>
+    <string name="dialog_title">Подтверждение</string>
+    <string name="dialog_deleteNote_sub_title">Вы точно хотите удалить заметку?</string>
 </resources>

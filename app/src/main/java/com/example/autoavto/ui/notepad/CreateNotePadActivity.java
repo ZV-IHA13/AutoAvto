@@ -1,13 +1,11 @@
-package com.example.autoavto.ui.activities;
+package com.example.autoavto.ui.notepad;
 
 
 import android.os.Build;
 import android.os.Bundle;
-import android.os.FileUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.autoavto.R;
@@ -17,16 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
 
 
 public class CreateNotePadActivity extends AppCompatActivity {
