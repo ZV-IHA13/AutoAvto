@@ -19,7 +19,11 @@ import com.example.autoavto.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -69,7 +73,6 @@ public class NotepadFragment extends Fragment {
         search_notes();
         ArrayAdapter<Note> a = new NoteAdapter(root.getContext());
         NotesList.setAdapter(a);
-
     }
     public void search_notes(){
         notes.clear();
@@ -77,30 +80,37 @@ public class NotepadFragment extends Fragment {
         String[] files = path.list();
 
         for (int i = 0; i < files.length; i++) {
-
             File file = new File(path + "/" + files[i]);
             Date date = new Date(file.lastModified());
-            Note note = new Note(files[i].replace(".txt", ""), date.toString());
+            Note note = new Note(files[i].replace(".txt", ""), date);
             if (notes.contains(note)) {
                 return;
-            } else {
-                notes.add(0,note);
+            }
+            else {
+                notes.add(note);
             }
         }
+        Comparator<Note> sort = new Comparator<Note>() {
+            @Override
+            public int compare(Note o1, Note o2) {
+                if(o1.getDate().after(o2.getDate())){
+                    return -1;
+                }
+                else if(o1.getDate().before(o2.getDate())){
+                    return 1;
+                }
+                return 0;
+            }
+        };
+        Collections.sort(notes,sort);
     }
 
     public class NoteAdapter extends ArrayAdapter<Note> {
-
-
-
         public NoteAdapter(Context context) {
             super(context, R.layout.my_simple_list_item, notes);
         }
-
         public View getView(int position, View convertView, ViewGroup parent) {
-
             Note note = getItem(position);
-
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext())
                         .inflate(R.layout.my_simple_list_item, null);
@@ -108,10 +118,8 @@ public class NotepadFragment extends Fragment {
             ((TextView) convertView.findViewById(R.id.name))
                     .setText(note.firstText);
             ((TextView) convertView.findViewById(R.id.capital))
-                    .setText(note.date);
+                    .setText(note.getDate().toString());
             return convertView;
         }
     }
-
-
 }

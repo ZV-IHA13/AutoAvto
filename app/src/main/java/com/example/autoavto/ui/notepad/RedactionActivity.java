@@ -21,6 +21,7 @@ public class RedactionActivity extends AppCompatActivity {
     EditText noteText;
     Button buttonBack;
     Button buttonNoteDelete;
+    File file;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +45,7 @@ public class RedactionActivity extends AppCompatActivity {
             //открытие файла и вывод его содержимого
             String namefile = getIntent().getSerializableExtra("name").toString();
             noteName.setText(namefile);
-            File file = new File(getFilesDir() + "/" + getIntent().getSerializableExtra("name").toString() + ".txt");
+            file = new File(getFilesDir() + "/" + getIntent().getSerializableExtra("name").toString() + ".txt");
             try {
                 FileReader reader = new FileReader(file);
                 Scanner scanner = new Scanner(reader);

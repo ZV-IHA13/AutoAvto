@@ -1,13 +1,14 @@
 package com.example.autoavto;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Note {
 
     public String firstText;
-    public String date;
+    public Date date;
 
-    public Note(String firstText, String date) {
+    public Note(String firstText, Date date) {
         this.firstText = firstText;
         this.date = date;
     }
@@ -20,11 +21,11 @@ public class Note {
         this.firstText = firstText;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
