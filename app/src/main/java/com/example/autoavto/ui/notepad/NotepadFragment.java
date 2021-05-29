@@ -19,9 +19,7 @@ import com.example.autoavto.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -53,7 +51,7 @@ public class NotepadFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Note a = notes.get(position);
-                String fileName = a.firstText;
+                String fileName = a.getFirstText();
                 Intent i = new Intent(getContext(), RedactionActivity.class);
 
                 i.putExtra("name", fileName);
@@ -63,6 +61,7 @@ public class NotepadFragment extends Fragment {
 
         return root;
     }
+
     @Override
     public void onResume() {
         update();
@@ -74,7 +73,8 @@ public class NotepadFragment extends Fragment {
         ArrayAdapter<Note> a = new NoteAdapter(root.getContext());
         NotesList.setAdapter(a);
     }
-    public void search_notes(){
+
+    public void search_notes() {
         notes.clear();
         File path = new File("data/data/com.example.autoavto/files");
         String[] files = path.list();
@@ -85,30 +85,29 @@ public class NotepadFragment extends Fragment {
             Note note = new Note(files[i].replace(".txt", ""), date);
             if (notes.contains(note)) {
                 return;
-            }
-            else {
+            } else {
                 notes.add(note);
             }
         }
         Comparator<Note> sort = new Comparator<Note>() {
             @Override
             public int compare(Note o1, Note o2) {
-                if(o1.getDate().after(o2.getDate())){
+                if (o1.getDate().after(o2.getDate())) {
                     return -1;
-                }
-                else if(o1.getDate().before(o2.getDate())){
+                } else if (o1.getDate().before(o2.getDate())) {
                     return 1;
                 }
                 return 0;
             }
         };
-        Collections.sort(notes,sort);
+        Collections.sort(notes, sort);
     }
 
     public class NoteAdapter extends ArrayAdapter<Note> {
         public NoteAdapter(Context context) {
             super(context, R.layout.my_simple_list_item, notes);
         }
+
         public View getView(int position, View convertView, ViewGroup parent) {
             Note note = getItem(position);
             if (convertView == null) {
@@ -116,9 +115,36 @@ public class NotepadFragment extends Fragment {
                         .inflate(R.layout.my_simple_list_item, null);
             }
             ((TextView) convertView.findViewById(R.id.name))
-                    .setText(note.firstText);
+                    .setText(note.getFirstText());
+            String month = "";
+            switch (note.getDate().getMonth()) {
+                case (0):
+                    month = "Янв";
+                case (1):
+                    month = "Фев";
+                case (2):
+                    month = "Мар";
+                case (3):
+                    month = "Апр";
+                case (4):
+                    month = "Май";
+                case (5):
+                    month = "Июн";
+                case (6):
+                    month = "Июл";
+                case (7):
+                    month = "Авг";
+                case (8):
+                    month = "Сен";
+                case (9):
+                    month = "Окт";
+                case (10):
+                    month = "Ноя";
+                case (11):
+                    month = "Дек";
+            }
             ((TextView) convertView.findViewById(R.id.capital))
-                    .setText(note.getDate().toString());
+                    .setText(month + " " + note.getDate().getDate() + " " +note.getDate().getHours() + ":" + note.getDate().getMinutes());
             return convertView;
         }
     }
