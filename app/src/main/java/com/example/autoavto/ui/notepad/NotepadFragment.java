@@ -144,7 +144,7 @@ public class NotepadFragment extends Fragment {
                     month = "Дек";
             }
             ((TextView) convertView.findViewById(R.id.capital))
-                    .setText(month + " " + note.getDate().getDate() + " " +note.getDate().getHours() + ":" + note.getDate().getMinutes());
+                    .setText(month + " " + note.getDate().getDate() + " " + note.getDate().getHours() + ":" + note.getDate().getMinutes());
             return convertView;
         }
     }

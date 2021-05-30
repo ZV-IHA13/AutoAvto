@@ -4,7 +4,7 @@
     <string name="LogInPass">Пароль</string>
     <string name="LogInHint">Введите логин</string>
     <string name="LogInPassHint">Введите пароль</string>
-    <string name="title_activity_main"></string>
+    <string name="title_activity_main">AutoAvto</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
