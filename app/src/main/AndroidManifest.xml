@@ -12,7 +12,7 @@
         android:theme="@style/Theme.AutoAvto">
         <activity android:name=".ui.notepad.RedactionActivity"/>
         <activity android:name=".ui.notepad.CreateNotePadActivity" />
-        <activity android:name=".ui.activities.CreateCarActivity" />
+        <activity android:name=".ui.main.CreateCarActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"

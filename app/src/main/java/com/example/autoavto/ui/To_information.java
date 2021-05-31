@@ -1,6 +1,6 @@
 package com.example.autoavto.ui;
 
-public class Car {
+public class To_information {
     private String text;
     private Integer to,id;
     private boolean replace;

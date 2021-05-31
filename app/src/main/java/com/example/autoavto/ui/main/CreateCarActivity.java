@@ -1,21 +1,23 @@
-package com.example.autoavto.ui.activities;
+package com.example.autoavto.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.security.keystore.StrongBoxUnavailableException;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.autoavto.R;
-import com.example.autoavto.ui.Car;
+import com.example.autoavto.ui.To_information;
 import com.example.autoavto.ui.CarService;
+import com.example.autoavto.ui.settings.CarNames;
 
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -25,20 +27,44 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CreateCarActivity extends AppCompatActivity {
+    private static String item;
     RadioButton radioButton1, radioButton2, radioButton3, radioButton4, radioButton5, radioButton6, radioButton7, radioButton8;
     Button button_accept;
-
+    Spinner dropdown;
+    List<String> items = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_car);
         load();
 
-        Spinner dropdown = findViewById(R.id.spinner_car_choose);
-        String[] item = new String[]{"KIA sportage 2009"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, item);
-        dropdown.setAdapter(adapter);
+        Retrofit retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl("http://10.0.2.2:8452").build();
+        CarService service = retrofit.create(CarService.class);
+        Call<CarNames[]> call = service.getCar();
+        call.enqueue(new Callback<CarNames[]>() {
+            @Override
+            public void onResponse(Call<CarNames[]> call, Response<CarNames[]> response) {
+                setItems(response);
+            }
 
+            @Override
+            public void onFailure(Call<CarNames[]> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println(items.size());
+                item = items.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         button_accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,16 +75,13 @@ public class CreateCarActivity extends AppCompatActivity {
                     Toast.makeText(CreateCarActivity.this, "Заполнены не все пункты!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                /* Здесь будет загрузка с базы сервера */
-                callGetCar();
-
                 finish();
             }
         });
 
     }
-
     public void load() {
+        dropdown = findViewById(R.id.spinner_car_choose);
         button_accept = findViewById(R.id.button_accept);
         radioButton1 = findViewById(R.id.radioButton1);
         radioButton2 = findViewById(R.id.radioButton2);
@@ -69,22 +92,15 @@ public class CreateCarActivity extends AppCompatActivity {
         radioButton7 = findViewById(R.id.radioButton7);
         radioButton8 = findViewById(R.id.radioButton8);
     }
-    public Car callGetCar(){
-        final Car[] car = new Car[1];
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:8452").addConverterFactory(GsonConverterFactory.create()).build();
-        CarService service = retrofit.create(CarService.class);
-        Call<Car> call = service.getCar("1");
-        call.enqueue(new Callback<Car>() {
-            @Override
-            public void onResponse(Call<Car> call, Response<Car> response) {
-                car[0] = response.body();
-            }
-
-            @Override
-            public void onFailure(Call<Car> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
-        return car[0];
+    public void setItems(Response<CarNames[]> response){
+        for(int i =0;i<response.body().length;i++) {
+            items.add(response.body()[i].getCarName());
+            System.out.println(items.get(i));
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,items);
+        dropdown.setAdapter(adapter);
+    }
+    public static String getNameCar(){
+        return item;
     }
 }

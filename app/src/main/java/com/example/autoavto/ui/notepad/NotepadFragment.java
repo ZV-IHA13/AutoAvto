@@ -105,14 +105,14 @@ public class NotepadFragment extends Fragment {
 
     public class NoteAdapter extends ArrayAdapter<Note> {
         public NoteAdapter(Context context) {
-            super(context, R.layout.my_simple_list_item, notes);
+            super(context, R.layout.my_simple_list_notes, notes);
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
             Note note = getItem(position);
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext())
-                        .inflate(R.layout.my_simple_list_item, null);
+                        .inflate(R.layout.my_simple_list_notes, null);
             }
             ((TextView) convertView.findViewById(R.id.name))
                     .setText(note.getFirstText());
