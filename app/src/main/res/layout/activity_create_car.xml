@@ -6,25 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.CreateCarActivity">
 
-    <TextView
-        android:id="@+id/textChooseTwo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/create_car_choose_2"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.475"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_car_choose" />
-
     <Spinner
         android:id="@+id/spinner_car_choose"
         android:layout_width="354dp"
         android:layout_height="53dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="92dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textChooseOne" />
 
@@ -32,81 +20,22 @@
         android:id="@+id/textChooseOne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="160dp"
         android:text="@string/create_car_choose_1"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.145"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="351dp"
-        android:layout_height="384dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textChooseTwo">
-
-        <RadioButton
-            android:id="@+id/radioButton1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/choose_TO_0" />
-
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/choose_TO_1" />
-
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/choose_TO_2" />
-
-        <RadioButton
-            android:id="@+id/radioButton4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/choose_TO_3" />
-
-        <RadioButton
-            android:id="@+id/radioButton5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/choose_TO_4" />
-
-        <RadioButton
-            android:id="@+id/radioButton6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/choose_TO_5" />
-
-        <RadioButton
-            android:id="@+id/radioButton7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/choose_TO_6" />
-
-        <RadioButton
-            android:id="@+id/radioButton8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/choose_TO_7" />
-    </RadioGroup>
 
     <Button
         android:id="@+id/button_accept"
         android:layout_width="276dp"
         android:layout_height="54dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="108dp"
         android:text="@android:string/ok"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_car_choose" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
