@@ -1,6 +1,4 @@
-package com.example.autoavto.ui;
-
-import com.example.autoavto.ui.settings.CarNames;
+package com.example.autoavto.ui.main;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

@@ -3,7 +3,6 @@ package com.example.autoavto.ui.main;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.security.keystore.StrongBoxUnavailableException;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,18 +12,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.autoavto.R;
-import com.example.autoavto.ui.To_information;
-import com.example.autoavto.ui.CarService;
-import com.example.autoavto.ui.settings.CarNames;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -80,13 +73,38 @@ public class CreateCarActivity extends AppCompatActivity {
                     Toast.makeText(CreateCarActivity.this, "Заполнены не все пункты!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                File file = new File("data/data/com.example.autoavto/cache/"+item+".txt");
-                try {
-                    file.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                int i = 0;
+                if(radioButton1.isChecked()){
+                    i=1;
+                }else if(radioButton2.isChecked()){
+                    i=2;
+                }else if(radioButton3.isChecked()){
+                    i=3;
+                }else if(radioButton4.isChecked()){
+                    i=4;
+                }else if(radioButton5.isChecked()){
+                    i=5;
+                }else if(radioButton6.isChecked()){
+                    i=6;
+                }else if(radioButton7.isChecked()){
+                    i=7;
+                }else if(radioButton8.isChecked()){
+                    i=8;
                 }
-                finish();
+                File file = new File(getCacheDir()+"/"+item+".txt");
+                if(file.exists()){
+                    Toast.makeText(CreateCarActivity.this, "Данная машина уже добавлена!", Toast.LENGTH_SHORT).show();
+                }else {
+                    try {
+                        file.createNewFile();
+                        FileWriter writer = new FileWriter(file);
+                        writer.write(String.valueOf(i));
+                        writer.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    finish();
+                }
             }
         });
 

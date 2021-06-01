@@ -14,7 +14,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.autoavto.Note;
 import com.example.autoavto.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

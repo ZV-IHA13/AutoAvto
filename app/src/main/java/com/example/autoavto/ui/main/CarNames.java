@@ -1,4 +1,4 @@
-package com.example.autoavto.ui.settings;
+package com.example.autoavto.ui.main;
 
 public class CarNames {
     private String carNames;

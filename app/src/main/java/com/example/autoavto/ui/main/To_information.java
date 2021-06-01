@@ -1,4 +1,4 @@
-package com.example.autoavto.ui;
+package com.example.autoavto.ui.main;
 
 public class To_information {
     private String text;

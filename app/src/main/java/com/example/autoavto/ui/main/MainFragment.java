@@ -6,32 +6,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.autoavto.R;
-import com.example.autoavto.ui.CarService;
-import com.example.autoavto.ui.settings.CarNames;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.nio.file.FileVisitResult;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainFragment extends Fragment {
     FloatingActionButton fab;
@@ -50,7 +38,14 @@ public class MainFragment extends Fragment {
             }
         });
         listcars = root.findViewById(R.id.listOfCars);
-
+        listcars.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent i2 = new Intent(root.getContext(),CarToActivity.class);
+                i2.putExtra("namecar",car.get(i).getCarName());
+                startActivity(i2);
+            }
+        });
         return root;
     }
 

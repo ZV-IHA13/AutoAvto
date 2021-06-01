@@ -1,7 +1,6 @@
-package com.example.autoavto;
+package com.example.autoavto.ui.notepad;
 
 import java.util.Date;
-import java.util.Objects;
 
 public class Note {
 
