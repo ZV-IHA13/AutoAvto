@@ -53,12 +53,10 @@ public class NotepadFragment extends Fragment {
                 Note a = notes.get(position);
                 String fileName = a.getFirstText();
                 Intent i = new Intent(getContext(), RedactionActivity.class);
-
                 i.putExtra("name", fileName);
                 startActivity(i);
             }
         });
-
         return root;
     }
 

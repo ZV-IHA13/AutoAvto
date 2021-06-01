@@ -19,8 +19,13 @@ import com.example.autoavto.ui.CarService;
 import com.example.autoavto.ui.settings.CarNames;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.nio.file.FileVisitResult;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,7 +38,6 @@ public class MainFragment extends Fragment {
     ListView listcars;
     View root;
     private static final List<CarNames> car = new ArrayList<>();
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_main, container, false);
@@ -52,16 +56,16 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onResume() {
-        String namecar = CreateCarActivity.getNameCar();
-        if(namecar!=null && !namecar.isEmpty()) {
-            System.out.println("FFFFfff"+namecar);
-            CarNames a = new CarNames();
-            a.setCarName(namecar);
-
-            ArrayAdapter<CarNames> ad = new CarAdapter(root.getContext());
-            listcars.setAdapter(ad);
-
+        car.clear();
+        File file = new File("data/data/com.example.autoavto/cache/");
+        String[] files = file.list();
+        for(int i = 0;i< files.length;i++){
+            CarNames names = new CarNames();
+            names.setCarName(files[i].replace(".txt",""));
+            car.add(names);
         }
+        ArrayAdapter<CarNames> ad = new CarAdapter(root.getContext());
+        listcars.setAdapter(ad);
         super.onResume();
     }
 

@@ -17,8 +17,14 @@ import com.example.autoavto.ui.To_information;
 import com.example.autoavto.ui.CarService;
 import com.example.autoavto.ui.settings.CarNames;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,7 +43,6 @@ public class CreateCarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_car);
         load();
-
         Retrofit retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl("http://10.0.2.2:8452").build();
         CarService service = retrofit.create(CarService.class);
         Call<CarNames[]> call = service.getCar();
@@ -75,6 +80,12 @@ public class CreateCarActivity extends AppCompatActivity {
                     Toast.makeText(CreateCarActivity.this, "Заполнены не все пункты!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                File file = new File("data/data/com.example.autoavto/cache/"+item+".txt");
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 finish();
             }
         });
@@ -100,7 +111,5 @@ public class CreateCarActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,items);
         dropdown.setAdapter(adapter);
     }
-    public static String getNameCar(){
-        return item;
-    }
+
 }
