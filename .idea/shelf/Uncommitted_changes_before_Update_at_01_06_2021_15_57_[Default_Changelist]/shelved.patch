@@ -1,0 +1,112 @@
+Index: app/src/main/java/com/example/autoavto/ui/activities/CreateCarActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.autoavto.ui.activities;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.ArrayAdapter;\r\nimport android.widget.Button;\r\nimport android.widget.RadioButton;\r\nimport android.widget.RadioGroup;\r\nimport android.widget.Spinner;\r\nimport android.widget.Toast;\r\n\r\nimport com.example.autoavto.R;\r\n\r\n\r\n\r\nimport java.sql.Connection;\r\n\r\nimport java.sql.Driver;\r\nimport java.sql.DriverManager;\r\nimport java.sql.ResultSet;\r\nimport java.sql.SQLException;\r\nimport java.sql.Statement;\r\n\r\npublic class CreateCarActivity extends AppCompatActivity {\r\n    RadioButton radioButton1,radioButton2,radioButton3,radioButton4,radioButton5,radioButton6,radioButton7,radioButton8;\r\n    Button button_accept;\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_create_car);\r\n        load();\r\n\r\n        Spinner dropdown = findViewById(R.id.spinner_car_choose);\r\n        String[] item = new String[]{\"KIA sportage 2009\"};\r\n        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, item);\r\n        dropdown.setAdapter(adapter);\r\n\r\n        button_accept.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                if(!radioButton1.isChecked()&&!radioButton2.isChecked()\r\n                        &&!radioButton3.isChecked()&&!radioButton4.isChecked()\r\n                        &&!radioButton5.isChecked()&&!radioButton6.isChecked()\r\n                        &&!radioButton7.isChecked()&&!radioButton8.isChecked()){\r\n                    Toast.makeText(CreateCarActivity.this, \"Заполнены не все пункты!\", Toast.LENGTH_SHORT).show();\r\n                    return;\r\n                }\r\n                /* Здесь будет загрузка с базы сервера */\r\n                /*try {\r\n                    //Class.forName(\"com.mysql.cj.jdbc.Driver\").newInstance();\r\n                } catch (ClassNotFoundException e) {\r\n                    System.out.println(\"Where is your MySQL JDBC Driver?\");\r\n                    e.printStackTrace();\r\n                    return;\r\n                } catch (IllegalAccessException e) {\r\n                    e.printStackTrace();\r\n                } catch (InstantiationException e) {\r\n                    e.printStackTrace(); }\r\n                */\r\n                try {\r\n                    Class.forName(\"com.mysql.jdbc.Driver\");\r\n                    //Driver driver = new com.mysql.cj.jdbc.Driver();\r\n                    //DriverManager.registerDriver(driver);\r\n\r\n\r\n                    Connection conn = DriverManager.getConnection(\"jdbc:mysql://VH276.spaceweb.ru:3306/frinru_takeby\", \"frinru_takeby\", \"TakeBy#frin21\");\r\n\r\n                    Statement statement = conn.createStatement();\r\n                    ResultSet res = statement.executeQuery(\"SELECT * FROM TEST\");\r\n                    while (res.next()) {\r\n                        System.out.println(res.getString(\"NAME\"));\r\n\r\n                    }\r\n\r\n\r\n                } catch (SQLException ex) {\r\n                    System.out.println(\"SQLException: \" + ex.getMessage());\r\n                    System.out.println(\"SQLState: \" + ex.getSQLState());\r\n                    System.out.println(\"VendorError: \" + ex.getErrorCode());\r\n                } catch (ClassNotFoundException e) {\r\n                    e.printStackTrace();\r\n                }\r\n\r\n                finish();\r\n            }\r\n        });\r\n\r\n    }\r\n    public void load(){\r\n        button_accept = findViewById(R.id.button_accept);\r\n        radioButton1 = findViewById(R.id.radioButton1);\r\n        radioButton2 = findViewById(R.id.radioButton2);\r\n        radioButton3 = findViewById(R.id.radioButton3);\r\n        radioButton4 = findViewById(R.id.radioButton4);\r\n        radioButton5 = findViewById(R.id.radioButton5);\r\n        radioButton6 = findViewById(R.id.radioButton6);\r\n        radioButton7 = findViewById(R.id.radioButton7);\r\n        radioButton8 = findViewById(R.id.radioButton8);\r\n\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/autoavto/ui/activities/CreateCarActivity.java	(revision a227ceb740579fa8a3c71933a661d4bbe5f91ffa)
++++ app/src/main/java/com/example/autoavto/ui/activities/CreateCarActivity.java	(date 1621960425349)
+@@ -46,41 +46,7 @@
+                     Toast.makeText(CreateCarActivity.this, "Заполнены не все пункты!", Toast.LENGTH_SHORT).show();
+                     return;
+                 }
+-                /* Здесь будет загрузка с базы сервера */
+-                /*try {
+-                    //Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+-                } catch (ClassNotFoundException e) {
+-                    System.out.println("Where is your MySQL JDBC Driver?");
+-                    e.printStackTrace();
+-                    return;
+-                } catch (IllegalAccessException e) {
+-                    e.printStackTrace();
+-                } catch (InstantiationException e) {
+-                    e.printStackTrace(); }
+-                */
+-                try {
+-                    Class.forName("com.mysql.jdbc.Driver");
+-                    //Driver driver = new com.mysql.cj.jdbc.Driver();
+-                    //DriverManager.registerDriver(driver);
+-
+ 
+-                    Connection conn = DriverManager.getConnection("jdbc:mysql://VH276.spaceweb.ru:3306/frinru_takeby", "frinru_takeby", "TakeBy#frin21");
+-
+-                    Statement statement = conn.createStatement();
+-                    ResultSet res = statement.executeQuery("SELECT * FROM TEST");
+-                    while (res.next()) {
+-                        System.out.println(res.getString("NAME"));
+-
+-                    }
+-
+-
+-                } catch (SQLException ex) {
+-                    System.out.println("SQLException: " + ex.getMessage());
+-                    System.out.println("SQLState: " + ex.getSQLState());
+-                    System.out.println("VendorError: " + ex.getErrorCode());
+-                } catch (ClassNotFoundException e) {
+-                    e.printStackTrace();
+-                }
+ 
+                 finish();
+             }
+@@ -97,8 +63,5 @@
+         radioButton6 = findViewById(R.id.radioButton6);
+         radioButton7 = findViewById(R.id.radioButton7);
+         radioButton8 = findViewById(R.id.radioButton8);
+-
+     }
+-
+-
+ }
+\ No newline at end of file
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'com.android.application'\r\n}\r\n\r\nandroid {\r\n    compileSdkVersion 30\r\n    buildToolsVersion \"30.0.2\"\r\n\r\n    defaultConfig {\r\n        applicationId \"com.example.autoavto\"\r\n        minSdkVersion 16\r\n        targetSdkVersion 30\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n}\r\n\r\ndependencies {\r\n\r\n    implementation 'androidx.appcompat:appcompat:1.2.0'\r\n    implementation 'com.google.android.material:material:1.3.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'\r\n    implementation 'androidx.navigation:navigation-fragment:2.2.2'\r\n    implementation 'androidx.navigation:navigation-ui:2.2.2'\r\n    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'\r\n    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'\r\n    testImplementation 'junit:junit:4.+'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.2'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'\r\n    compile 'mysql:mysql-connector-java:5.1.18'\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision a227ceb740579fa8a3c71933a661d4bbe5f91ffa)
++++ app/build.gradle	(date 1621959312969)
+@@ -40,5 +40,4 @@
+     testImplementation 'junit:junit:4.+'
+     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+-    compile 'mysql:mysql-connector-java:5.1.18'
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/autoavto/ui/activities/CreateNotePadActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.autoavto.ui.activities;\r\n\r\n\r\nimport android.os.Build;\r\nimport android.os.Bundle;\r\nimport android.os.FileUtils;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.ImageButton;\r\nimport android.widget.Toast;\r\n\r\nimport com.example.autoavto.R;\r\n\r\nimport androidx.annotation.RequiresApi;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport java.io.File;\r\nimport java.io.FileNotFoundException;\r\nimport java.io.FileReader;\r\nimport java.io.FileWriter;\r\nimport java.io.IOException;\r\nimport java.nio.charset.StandardCharsets;\r\nimport java.nio.file.Files;\r\nimport java.nio.file.Paths;\r\nimport java.util.Arrays;\r\nimport java.util.Date;\r\nimport java.util.List;\r\nimport java.util.Scanner;\r\n\r\n\r\npublic class CreateNotePadActivity extends AppCompatActivity {\r\n    String fileName;\r\n    Button buttonCreate;\r\n    EditText noteName;\r\n    EditText noteText;\r\n    Button buttonBack;\r\n\r\n    @RequiresApi(api = Build.VERSION_CODES.O)\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_create_note_pad);\r\n\r\n        noteName = findViewById(R.id.noteName);\r\n        buttonCreate = findViewById(R.id.buttonCreate);\r\n        noteText = findViewById(R.id.noteText);\r\n        buttonBack = findViewById(R.id.buttonBack_fromCreate);\r\n            buttonCreate.setOnClickListener(v -> {\r\n\r\n                try {\r\n                    if (noteName.getText().toString().equals(\"\")) {\r\n                        Toast.makeText(CreateNotePadActivity.this, \"Имя не может содержать пробелов или быть пустым!\", Toast.LENGTH_SHORT).show();\r\n                    } else {\r\n                        fileName = getFilesDir() + \"/\" + noteName.getText().toString() + \".txt\";\r\n                        File filecreate = new File(fileName);\r\n                        //create the file.\r\n                        if (filecreate.createNewFile()) {\r\n                            Toast.makeText(this, \"Сохранено!\", Toast.LENGTH_SHORT).show();\r\n                            writeinfile(fileName);\r\n                            finish();\r\n                        } else {\r\n                            Toast.makeText(this, \"Заметка с таким именем уже существует!\", Toast.LENGTH_SHORT).show();\r\n                        }\r\n                    }\r\n                } catch (FileNotFoundException e) {\r\n                    e.printStackTrace();\r\n                } catch (IOException e) {\r\n                    e.printStackTrace();\r\n                }\r\n            });\r\n\r\n            buttonBack.setOnClickListener(new View.OnClickListener() {\r\n                @Override\r\n                public void onClick(View v) {\r\n                    finish();\r\n                }\r\n            });\r\n\r\n        }\r\n        public void writeinfile (String fileName) {\r\n            try {\r\n                FileWriter writer = new FileWriter(fileName);\r\n                writer.write(noteText.getText().toString());\r\n                writer.close();\r\n            } catch (FileNotFoundException e) {\r\n                e.printStackTrace();\r\n            } catch (IOException e) {\r\n                e.printStackTrace();\r\n            }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/autoavto/ui/activities/CreateNotePadActivity.java	(revision a227ceb740579fa8a3c71933a661d4bbe5f91ffa)
++++ app/src/main/java/com/example/autoavto/ui/activities/CreateNotePadActivity.java	(date 1621953135184)
+@@ -7,7 +7,6 @@
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.EditText;
+-import android.widget.ImageButton;
+ import android.widget.Toast;
+ 
+ import com.example.autoavto.R;
+@@ -17,17 +16,8 @@
+ 
+ import java.io.File;
+ import java.io.FileNotFoundException;
+-import java.io.FileReader;
+ import java.io.FileWriter;
+ import java.io.IOException;
+-import java.nio.charset.StandardCharsets;
+-import java.nio.file.Files;
+-import java.nio.file.Paths;
+-import java.util.Arrays;
+-import java.util.Date;
+-import java.util.List;
+-import java.util.Scanner;
+-
+ 
+ public class CreateNotePadActivity extends AppCompatActivity {
+     String fileName;
