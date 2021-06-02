@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.autoavto.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;

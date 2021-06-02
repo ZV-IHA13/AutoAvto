@@ -2,8 +2,19 @@ package com.example.autoavto.ui.main;
 
 public class To_information {
     private String text;
+    private String articule;
     private Integer to,id;
     private boolean replace;
+
+    public String getArticule() {
+        return articule;
+    }
+
+    public void setArticule(String articule) {
+        this.articule = articule;
+    }
+
+
 
     public String getText() {
         return text;

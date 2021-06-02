@@ -39,4 +39,5 @@
     <string name="dialog_button_disaccept">Отмена</string>
     <string name="dialog_title">Подтверждение</string>
     <string name="dialog_deleteNote_sub_title">Вы точно хотите удалить заметку?</string>
+    <string name="dialog_create_url_browser">Вы хотите найти эту деталь в интернете?</string>
 </resources>
