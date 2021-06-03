@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoAvto">
-
+        <activity android:name=".ui.main.ToActivity"/>
         <activity android:name=".ui.main.CarToActivity" />
         <activity android:name=".ui.notepad.RedactionActivity" />
         <activity android:name=".ui.notepad.CreateNotePadActivity" />
@@ -28,5 +28,4 @@
         </activity>
         <receiver android:name=".AlarmReciever"/>
     </application>
-
 </manifest>

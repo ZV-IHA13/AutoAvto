@@ -43,4 +43,5 @@
     <string name="channel_name">Alarm</string>
     <string name="channel_description">createAlarm</string>
     <string name="notifyRemember">А вы готовы к ТО?</string>
+    <string name="abouttext">Авторы проекта - Захаркин Вадим и Григорьев Алексей</string>
 </resources>

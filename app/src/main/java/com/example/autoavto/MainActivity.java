@@ -36,13 +36,15 @@ import static android.app.AlarmManager.RTC_WAKEUP;
 
 public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
-
+    public static boolean statusAlarm = false;
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setAlarm();
+        if(!statusAlarm){
+            setAlarm();
+        }
 
         if(!getFilesDir().exists()){
             getFilesDir();
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new
                 Intent(this,AlarmReciever.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1,intent,0);
-        alarmManager.setRepeating(RTC_WAKEUP,System.currentTimeMillis(),INTERVAL_DAY,pendingIntent);
+        alarmManager.setRepeating(RTC_WAKEUP,System.currentTimeMillis()+1000,60000,pendingIntent);
+
     }
 }
