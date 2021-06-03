@@ -31,10 +31,10 @@ import java.util.Calendar;
 import static android.app.AlarmManager.ELAPSED_REALTIME_WAKEUP;
 import static android.app.AlarmManager.INTERVAL_DAY;
 import static android.app.AlarmManager.INTERVAL_FIFTEEN_MINUTES;
+import static android.app.AlarmManager.INTERVAL_HOUR;
 import static android.app.AlarmManager.RTC_WAKEUP;
 
 public class MainActivity extends AppCompatActivity {
-    public static final int INTERVAL = 1000 * 5; //не работает
     private AppBarConfiguration mAppBarConfiguration;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -70,12 +70,10 @@ public class MainActivity extends AppCompatActivity {
     }
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void setAlarm(){
-        Calendar c = Calendar.getInstance();
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new
                 Intent(this,AlarmReciever.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1,intent,0);
-
-        alarmManager.setRepeating(RTC_WAKEUP,c.getTimeInMillis(),INTERVAL,pendingIntent);
+        alarmManager.setRepeating(RTC_WAKEUP,System.currentTimeMillis(),INTERVAL_DAY,pendingIntent);
     }
 }
