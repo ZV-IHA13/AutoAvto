@@ -56,6 +56,7 @@ ListView view;
         call.enqueue(new Callback<To_information[]>() {
             @Override
             public void onResponse(Call<To_information[]> call, Response<To_information[]> response) {
+                to.clear();
                 for(int i =0;i<response.body().length;i++){
                     To_information a = response.body()[i];
                     to.add(a);

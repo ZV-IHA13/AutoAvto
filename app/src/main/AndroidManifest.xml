@@ -3,7 +3,6 @@
     package="com.example.autoavto">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoAvto">
-        <activity android:name=".ui.main.ToActivity"></activity>
+
         <activity android:name=".ui.main.CarToActivity" />
         <activity android:name=".ui.notepad.RedactionActivity" />
         <activity android:name=".ui.notepad.CreateNotePadActivity" />
@@ -27,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".AlarmReciever"/>
     </application>
 
 </manifest>

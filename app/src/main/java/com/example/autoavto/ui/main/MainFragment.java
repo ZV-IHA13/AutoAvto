@@ -1,5 +1,7 @@
 package com.example.autoavto.ui.main;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +17,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.autoavto.R;
+import com.example.autoavto.AlarmReciever;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MainFragment extends Fragment {
@@ -28,6 +32,7 @@ public class MainFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_main, container, false);
+
         fab = root.findViewById(R.id.fabcreate);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
