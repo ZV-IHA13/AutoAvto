@@ -42,5 +42,5 @@
     <string name="dialog_create_url_browser">Вы хотите найти эту деталь в интернете?</string>
     <string name="channel_name">Alarm</string>
     <string name="channel_description">createAlarm</string>
-    <string name="notifyRemember">Скоро будет ТО! А вы готовы?</string>
+    <string name="notifyRemember">А вы готовы к ТО?</string>
 </resources>
