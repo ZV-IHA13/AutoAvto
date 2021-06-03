@@ -1,6 +1,5 @@
 package com.example.autoavto;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -11,6 +10,7 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+
 
 public class AlarmReciever extends BroadcastReceiver {
 Context context;
@@ -24,12 +24,12 @@ Context context;
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(context.getResources().getString(R.string.app_name))
                 .setContentText(context.getResources().getString(R.string.notifyRemember))
+
                 .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         createNotificationChannel();
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
 
- // notificationId is a unique int for each notification that you must define
         notificationManager.notify(0, builder.build());
     }
     private void createNotificationChannel() {
@@ -39,8 +39,6 @@ Context context;
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel channel = new NotificationChannel("ID", name, importance);
             channel.setDescription(description);
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
             NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }

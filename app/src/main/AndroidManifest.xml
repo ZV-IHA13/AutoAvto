@@ -16,6 +16,7 @@
         <activity android:name=".ui.notepad.RedactionActivity" />
         <activity android:name=".ui.notepad.CreateNotePadActivity" />
         <activity android:name=".ui.main.CreateCarActivity" />
+        <activity android:name=".ui.main.ToActivity"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"

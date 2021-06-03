@@ -2,22 +2,15 @@ package com.example.autoavto;
 
 
 import android.app.AlarmManager;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
 
-
-import com.example.autoavto.ui.main.MainFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.RequiresApi;
-import androidx.core.app.NotificationCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -26,12 +19,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import java.util.Calendar;
-
-import static android.app.AlarmManager.ELAPSED_REALTIME_WAKEUP;
 import static android.app.AlarmManager.INTERVAL_DAY;
-import static android.app.AlarmManager.INTERVAL_FIFTEEN_MINUTES;
-import static android.app.AlarmManager.INTERVAL_HOUR;
 import static android.app.AlarmManager.RTC_WAKEUP;
 
 public class MainActivity extends AppCompatActivity {
@@ -74,6 +62,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new
                 Intent(this,AlarmReciever.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1,intent,0);
-        alarmManager.setRepeating(RTC_WAKEUP,System.currentTimeMillis(),INTERVAL_DAY,pendingIntent);
+        alarmManager.setRepeating(RTC_WAKEUP,System.currentTimeMillis()+1000*60,INTERVAL_DAY,pendingIntent);
     }
 }
