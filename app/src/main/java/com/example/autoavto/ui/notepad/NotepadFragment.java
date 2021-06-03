@@ -28,8 +28,6 @@ public class NotepadFragment extends Fragment {
     FloatingActionButton fab;
     ListView NotesList;
     View root;
-
-
     private static final List<Note> notes = new ArrayList<Note>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -43,9 +41,6 @@ public class NotepadFragment extends Fragment {
             startActivity(i);
         });
         update();
-
-
-        //ТЕПЕРЬ ЗДЕСЬ ЗАДАЕМ ДЕЙСТВИЯ, КОТОРЫЕ БУДУТ ВЫПОЛНЕНЫ ПОСЛЕ НАЖАТИЯ НА ЭЛЕМЕНТ ЛИСТВЬЮ
         NotesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

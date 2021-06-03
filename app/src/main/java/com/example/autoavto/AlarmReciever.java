@@ -24,7 +24,6 @@ Context context;
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(context.getResources().getString(R.string.app_name))
                 .setContentText(context.getResources().getString(R.string.notifyRemember))
-
                 .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         createNotificationChannel();

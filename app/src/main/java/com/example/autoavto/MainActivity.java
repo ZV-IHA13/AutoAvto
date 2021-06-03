@@ -1,6 +1,4 @@
 package com.example.autoavto;
-
-
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -62,6 +60,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new
                 Intent(this,AlarmReciever.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1,intent,0);
-        alarmManager.setRepeating(RTC_WAKEUP,System.currentTimeMillis()+1000*60,INTERVAL_DAY,pendingIntent);
+        alarmManager.setRepeating(RTC_WAKEUP,System.currentTimeMillis()+1000*60,INTERVAL_DAY*365,pendingIntent);
     }
 }
