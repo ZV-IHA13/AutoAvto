@@ -43,4 +43,6 @@
     <string name="channel_name">Alarm</string>
     <string name="channel_description">createAlarm</string>
     <string name="notifyRemember">А вы готовы к ТО?</string>
+    <string name="abouttext">Автор программы  - Захаркин Вадим, базу данных заполнил - Григорьев Алексей</string>
+    <string name="aboutdata">Почта: vad.zaharkin@yandex.ru, Github - https://github.com/ZV-IHA13</string>
 </resources>
