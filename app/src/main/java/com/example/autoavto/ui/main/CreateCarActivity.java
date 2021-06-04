@@ -12,10 +12,13 @@ import android.widget.Toast;
 
 import com.example.autoavto.R;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,12 +41,11 @@ public class CreateCarActivity extends AppCompatActivity {
         Call<CarNames[]> call = service.getCar();
         call.enqueue(new Callback<CarNames[]>() {
             @Override
-            public void onResponse(Call<CarNames[]> call, Response<CarNames[]> response) {
+            public void onResponse(@NotNull Call<CarNames[]> call, @NotNull Response<CarNames[]> response) {
                 setItems(response);
             }
-
             @Override
-            public void onFailure(Call<CarNames[]> call, Throwable t) {
+            public void onFailure(@NotNull Call<CarNames[]> call, @NotNull Throwable t) {
                 t.printStackTrace();
             }
         });
@@ -59,20 +61,20 @@ public class CreateCarActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        button_accept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                File file = new File(getCacheDir()+"/"+item+".txt");
-                if(file.exists()){
-                    Toast.makeText(CreateCarActivity.this, "Данная машина уже добавлена!", Toast.LENGTH_SHORT).show();
-                }else {
-                    try {
-                        file.createNewFile();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    finish();
+        button_accept.setOnClickListener(view -> {
+            if(item==null){
+                Toast.makeText(CreateCarActivity.this, "Проверьте ваше подключение к интернету и перезайдите!", Toast.LENGTH_SHORT).show();
+                return;}
+            File file = new File(getCacheDir()+"/"+item+".txt");
+            if(file.exists()){
+                Toast.makeText(CreateCarActivity.this, "Данная машина уже добавлена!", Toast.LENGTH_SHORT).show();
+            }else {
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
+                finish();
             }
         });
 
@@ -82,7 +84,7 @@ public class CreateCarActivity extends AppCompatActivity {
         button_accept = findViewById(R.id.button_accept);
     }
     public void setItems(Response<CarNames[]> response){
-        for(int i =0;i<response.body().length;i++) {
+        for(int i = 0; i< Objects.requireNonNull(response.body()).length; i++) {
             items.add(response.body()[i].getCarName());
             System.out.println(items.get(i));
         }

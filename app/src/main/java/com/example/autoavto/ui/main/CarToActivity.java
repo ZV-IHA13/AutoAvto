@@ -36,24 +36,18 @@ Button delete;
         tolist.setAdapter(adapter);
         nameCar = getIntent().getStringExtra("namecar");
         carname.setText(nameCar);
-        tolist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(CarToActivity.this,ToActivity.class);
-                i.putExtra("carname",nameCar);
-                i.putExtra("to",String.valueOf(position));
-                startActivity(i);
-            }
+        tolist.setOnItemClickListener((parent, view, position, id) -> {
+            Intent i = new Intent(CarToActivity.this,ToActivity.class);
+            i.putExtra("carname",nameCar);
+            i.putExtra("to",String.valueOf(position));
+            startActivity(i);
         });
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                File file = new File(getCacheDir() + "/"+nameCar+".txt");
-                if(file.delete()){
-                    Toast.makeText(CarToActivity.this, "Удалено!", Toast.LENGTH_SHORT).show();
-                }
-                finish();
+        delete.setOnClickListener(v -> {
+            File file = new File(getCacheDir() + "/"+nameCar+".txt");
+            if(file.delete()){
+                Toast.makeText(CarToActivity.this, "Удалено!", Toast.LENGTH_SHORT).show();
             }
+            finish();
         });
     }
 }

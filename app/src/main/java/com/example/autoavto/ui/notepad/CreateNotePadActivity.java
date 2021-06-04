@@ -60,12 +60,7 @@ public class CreateNotePadActivity extends AppCompatActivity {
                 }
             });
 
-            buttonBack.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
+            buttonBack.setOnClickListener(v -> finish());
 
         }
         public void writeinfile (String fileName) {

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,12 +22,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class NotepadFragment extends Fragment {
     FloatingActionButton fab;
     ListView NotesList;
     View root;
-    private static final List<Note> notes = new ArrayList<Note>();
+    private static final List<Note> notes = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,15 +41,12 @@ public class NotepadFragment extends Fragment {
             startActivity(i);
         });
         update();
-        NotesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Note a = notes.get(position);
-                String fileName = a.getFirstText();
-                Intent i = new Intent(getContext(), RedactionActivity.class);
-                i.putExtra("name", fileName);
-                startActivity(i);
-            }
+        NotesList.setOnItemClickListener((parent, view, position, id) -> {
+            Note a = notes.get(position);
+            String fileName = a.getFirstText();
+            Intent i = new Intent(getContext(), RedactionActivity.class);
+            i.putExtra("name", fileName);
+            startActivity(i);
         });
         return root;
     }
@@ -71,7 +68,7 @@ public class NotepadFragment extends Fragment {
         File path = new File("data/data/com.example.autoavto/files");
         String[] files = path.list();
 
-        for (int i = 0; i < files.length; i++) {
+        for (int i = 0; i < Objects.requireNonNull(files).length; i++) {
             File file = new File(path + "/" + files[i]);
             Date date = new Date(file.lastModified());
             Note note = new Note(files[i].replace(".txt", ""), date);
@@ -81,21 +78,18 @@ public class NotepadFragment extends Fragment {
                 notes.add(note);
             }
         }
-        Comparator<Note> sort = new Comparator<Note>() {
-            @Override
-            public int compare(Note o1, Note o2) {
-                if (o1.getDate().after(o2.getDate())) {
-                    return -1;
-                } else if (o1.getDate().before(o2.getDate())) {
-                    return 1;
-                }
-                return 0;
+        Comparator<Note> sort = (o1, o2) -> {
+            if (o1.getDate().after(o2.getDate())) {
+                return -1;
+            } else if (o1.getDate().before(o2.getDate())) {
+                return 1;
             }
+            return 0;
         };
         Collections.sort(notes, sort);
     }
 
-    public class NoteAdapter extends ArrayAdapter<Note> {
+    public static class NoteAdapter extends ArrayAdapter<Note> {
         public NoteAdapter(Context context) {
             super(context, R.layout.my_simple_list_notes, notes);
         }

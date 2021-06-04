@@ -1,5 +1,7 @@
 package com.example.autoavto.ui.main;
 
+import org.jetbrains.annotations.NotNull;
+
 public class To_information {
     private String text;
     private String articule;
@@ -13,9 +15,6 @@ public class To_information {
     public void setArticule(String articule) {
         this.articule = articule;
     }
-
-
-
     public String getText() {
         return text;
     }
@@ -48,6 +47,7 @@ public class To_information {
         this.replace = replace;
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "Car{" +

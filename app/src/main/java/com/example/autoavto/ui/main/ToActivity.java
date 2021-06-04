@@ -1,10 +1,5 @@
 package com.example.autoavto.ui.main;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -14,18 +9,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.autoavto.R;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -51,36 +51,31 @@ ListView view;
         Call<To_information[]> call = service.getTo(getIntent().getStringExtra("to"),getIntent().getStringExtra("carname"));
         call.enqueue(new Callback<To_information[]>() {
             @Override
-            public void onResponse(Call<To_information[]> call, Response<To_information[]> response) {
+            public void onResponse(@NotNull Call<To_information[]> call, @NotNull Response<To_information[]> response) {
                 to.clear();
-                for(int i =0;i<response.body().length;i++){
-                    To_information a = response.body()[i];
-                    to.add(a);
-                }
+                assert response.body() != null;
+                Collections.addAll(to, response.body());
                 view.setAdapter(adapter);
             }
             @Override
-            public void onFailure(Call<To_information[]> call, Throwable t) {
-                t.printStackTrace();
+            public void onFailure(@NotNull Call<To_information[]> call, @NotNull Throwable t) {
+                Toast.makeText(ToActivity.this, "Проверьте ваше подключение к интернету и перезайдите!", Toast.LENGTH_LONG).show();
             }
         });
 
-        view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                To_information a = to.get(position);
-                if(a.getArticule()!=null&&!a.getArticule().isEmpty()){
-                    FragmentManager manager = getSupportFragmentManager();
-                    Bundle args = new Bundle();
-                    args.putInt("position", position);
-                    DialogFragment DialogFragment = new DialogFragment();
-                    DialogFragment.setArguments(args);
-                    DialogFragment.show(manager, "Dialog");
-                }
+        view.setOnItemClickListener((parent, view, position, id) -> {
+            To_information a = to.get(position);
+            if(a.getArticule()!=null&&!a.getArticule().isEmpty()){
+                FragmentManager manager = getSupportFragmentManager();
+                Bundle args = new Bundle();
+                args.putInt("position", position);
+                DialogFragment DialogFragment = new DialogFragment();
+                DialogFragment.setArguments(args);
+                DialogFragment.show(manager, "Dialog");
             }
         });
     }
-    class MyAdapter extends ArrayAdapter<To_information> {
+    static class MyAdapter extends ArrayAdapter<To_information> {
         public MyAdapter(Context context) {
             super(context, R.layout.my_simple_list_to,to);
         }
@@ -90,11 +85,8 @@ ListView view;
                 convertView = LayoutInflater.from(getContext())
                         .inflate(R.layout.my_simple_list_to, null);
             }
-            ((CheckBox)convertView.findViewById(R.id.checkBox)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+            ((CheckBox)convertView.findViewById(R.id.checkBox)).setOnCheckedChangeListener((compoundButton, b) -> {
 
-                }
             });
             To_information a = getItem(position);
             ((TextView) convertView.findViewById(R.id.to_info_text)).setText(a.getText());
@@ -111,6 +103,7 @@ ListView view;
             String message = getResources().getString(R.string.dialog_create_url_browser);
             String buttonAccept = getResources().getString(R.string.dialog_button_accept);
             String buttonCancel = getResources().getString(R.string.dialog_button_disaccept);
+            assert getArguments() != null;
             int position = getArguments().getInt("position");
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle(title);  // заголовок

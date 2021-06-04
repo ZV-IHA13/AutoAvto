@@ -4,14 +4,16 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
 
-    public class MyDialogFragment extends DialogFragment {
+public class MyDialogFragment extends DialogFragment {
 
         @NonNull
         @NotNull
@@ -22,6 +24,7 @@ import java.io.File;
             String buttonAccept = getResources().getString(R.string.dialog_button_accept);
             String buttonCancel = getResources().getString(R.string.dialog_button_disaccept);
 
+            assert getArguments() != null;
             String filepath = getArguments().getString("name");
 
 
@@ -34,7 +37,7 @@ import java.io.File;
                 if (file.delete()) {
                     Toast.makeText(getContext(), "Заметка удалена", Toast.LENGTH_SHORT).show();
                 }
-                getActivity().finish();
+                requireActivity().finish();
             });
             builder.setNegativeButton(buttonCancel, (dialog, id) -> {
 

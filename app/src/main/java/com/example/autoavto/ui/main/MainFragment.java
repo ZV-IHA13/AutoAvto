@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MainFragment extends Fragment {
     FloatingActionButton fab;
@@ -30,21 +30,15 @@ public class MainFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_main, container, false);
         fab = root.findViewById(R.id.fabcreate);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(root.getContext(), CreateCarActivity.class);
-                startActivity(i);
-            }
+        fab.setOnClickListener(view -> {
+            Intent i = new Intent(root.getContext(), CreateCarActivity.class);
+            startActivity(i);
         });
         listcars = root.findViewById(R.id.listOfCars);
-        listcars.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent i2 = new Intent(root.getContext(), CarToActivity.class);
-                i2.putExtra("namecar", car.get(i).getCarName());
-                startActivity(i2);
-            }
+        listcars.setOnItemClickListener((adapterView, view, i, l) -> {
+            Intent i2 = new Intent(root.getContext(), CarToActivity.class);
+            i2.putExtra("namecar", car.get(i).getCarName());
+            startActivity(i2);
         });
         return root;
     }
@@ -53,7 +47,7 @@ public class MainFragment extends Fragment {
         car.clear();
         File file = new File("data/data/com.example.autoavto/cache/");
         String[] files = file.list();
-        for (int i = 0; i < files.length; i++) {
+        for (int i = 0; i < Objects.requireNonNull(files).length; i++) {
             CarNames names = new CarNames();
             names.setCarName(files[i].replace(".txt", ""));
             car.add(names);
@@ -62,7 +56,7 @@ public class MainFragment extends Fragment {
         listcars.setAdapter(ad);
         super.onResume();
     }
-    public class CarAdapter extends ArrayAdapter<CarNames> {
+    public static class CarAdapter extends ArrayAdapter<CarNames> {
         public CarAdapter(Context context) {
             super(context, R.layout.my_simple_list_cars, car);
         }
