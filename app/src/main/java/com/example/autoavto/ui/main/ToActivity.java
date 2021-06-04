@@ -46,7 +46,7 @@ ListView view;
         view = findViewById(R.id.listTo);
         carto = findViewById(R.id.textViewTo);
         carto.setText("ТО - "+ (Integer.parseInt(getIntent().getStringExtra("to"))+1));
-        Retrofit retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl("http://10.0.2.2:8452").build();
+        Retrofit retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl("http://192.168.0.158:8452").build();
         CarService service = retrofit.create(CarService.class);
         Call<To_information[]> call = service.getTo(getIntent().getStringExtra("to"),getIntent().getStringExtra("carname"));
         call.enqueue(new Callback<To_information[]>() {

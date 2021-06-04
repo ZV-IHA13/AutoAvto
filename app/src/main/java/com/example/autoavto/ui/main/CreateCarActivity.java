@@ -33,7 +33,7 @@ public class CreateCarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_car);
         load();
-        Retrofit retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl("http://10.0.2.2:8452").build();
+        Retrofit retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl("http://192.168.0.158:8452").build();
         CarService service = retrofit.create(CarService.class);
         Call<CarNames[]> call = service.getCar();
         call.enqueue(new Callback<CarNames[]>() {
