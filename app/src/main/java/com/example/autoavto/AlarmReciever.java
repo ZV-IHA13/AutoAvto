@@ -7,7 +7,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -16,6 +15,7 @@ public class AlarmReciever extends BroadcastReceiver {
 Context context;
     @Override
     public void onReceive(Context context, Intent intent) {
+        if(MainActivity.statusAlarm){return;}
         this.context = context;
         Intent intent2 = new Intent(context, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -28,6 +28,7 @@ Context context;
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         createNotificationChannel();
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+        MainActivity.statusAlarm = true;
 
         notificationManager.notify(0, builder.build());
     }
